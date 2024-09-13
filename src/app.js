@@ -79,7 +79,8 @@ export const start_server = () => {
     console.log(body);
     const { productID } = body;
     const result = await db
-			.delete(product)
+			.update(product)
+			.set({ deleted: true })
 			.where(eq(product.id, productID))
 			.run();
     return c.redirect("/");
